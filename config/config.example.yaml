@@ -1,0 +1,264 @@
+# Quantitative Trading Platform Configuration
+# Copy this file to config.yaml and fill in your credentials
+
+# ============================================================================
+# PORTFOLIO SETTINGS
+# ============================================================================
+portfolio:
+  initial_capital: 1_000_000  # Starting capital in USD
+  base_currency: USD
+  max_leverage: 3.0           # Maximum portfolio leverage
+  target_volatility: 0.15     # Target portfolio volatility (15%)
+
+# ============================================================================
+# RISK MANAGEMENT
+# ============================================================================
+risk:
+  # Portfolio-level limits
+  max_var_pct: 0.02           # Maximum 2% daily VaR
+  max_drawdown_pct: 0.20      # Maximum 20% drawdown before halt
+  var_confidence: 0.95        # VaR confidence level
+
+  # Regional allocation limits (%)
+  regional_limits:
+    US: 40
+    Europe: 30
+    Asia: 25
+    LATAM: 5
+
+  # Asset class allocation limits (%)
+  asset_class_limits:
+    equity: 50
+    fixed_income: 30
+    commodities: 15
+    fx: 5
+
+  # Sector limits (% of equity allocation)
+  sector_limits:
+    technology: 20
+    financials: 15
+    healthcare: 15
+    consumer: 15
+    industrials: 15
+    energy: 10
+    materials: 5
+    utilities: 5
+
+  # Position-level limits
+  max_position_pct: 5         # Max 5% per position
+  max_correlation_weight: 0.7 # Correlation adjustment factor
+  min_liquidity_days: 10      # Minimum days to unwind position
+
+# ============================================================================
+# INVESTMENT UNIVERSE
+# ============================================================================
+universe:
+  equity:
+    us:
+      - SPY      # S&P 500
+      - QQQ      # NASDAQ 100
+      - IWM      # Russell 2000
+    developed:
+      - EFA      # MSCI EAFE
+      - VGK      # FTSE Europe
+    emerging:
+      - EEM      # MSCI Emerging Markets
+      - FXI      # China Large Cap
+      - EWZ      # Brazil
+
+  fixed_income:
+    us_govt:
+      - TLT      # 20+ Year Treasury
+      - IEF      # 7-10 Year Treasury
+      - SHY      # 1-3 Year Treasury
+    corporate:
+      - LQD      # Investment Grade Corporate
+      - HYG      # High Yield Corporate
+    international:
+      - BWX      # International Treasury
+
+  commodities:
+    energy:
+      - USO      # Oil
+      - UNG      # Natural Gas
+    metals:
+      - GLD      # Gold
+      - SLV      # Silver
+    agriculture:
+      - DBA      # Agriculture
+      - CORN     # Corn
+
+  fx:
+    - UUP        # US Dollar Index
+    - FXE        # Euro
+    - FXY        # Japanese Yen
+    - FXB        # British Pound
+
+# ============================================================================
+# MARKET DATA
+# ============================================================================
+data:
+  # Primary data source
+  primary_source: yahoo       # Options: yahoo, alpaca, polygon, bloomberg
+
+  # Data update frequency
+  update_frequency: daily     # Options: tick, minute, hourly, daily
+
+  # Historical data lookback
+  lookback_days: 252          # 1 trading year
+
+  # API credentials (set via environment variables)
+  # YAHOO_API_KEY=your_key
+  # ALPACA_API_KEY=your_key
+  # ALPACA_SECRET_KEY=your_secret
+  # POLYGON_API_KEY=your_key
+
+# ============================================================================
+# STRATEGY SETTINGS
+# ============================================================================
+strategies:
+  momentum:
+    enabled: true
+    lookback_period: 60       # Days
+    rebalance_frequency: 20   # Days
+    min_momentum: 0.0         # Minimum momentum threshold
+    volatility_target: 0.10   # Strategy-specific vol target
+
+  mean_reversion:
+    enabled: false
+    zscore_entry: 2.0         # Z-score entry threshold
+    zscore_exit: 0.5          # Z-score exit threshold
+    lookback_period: 20       # Days
+
+  carry:
+    enabled: false
+    min_yield: 0.02           # Minimum 2% yield
+
+# ============================================================================
+# EXECUTION SETTINGS
+# ============================================================================
+execution:
+  # Broker
+  broker: alpaca              # Options: alpaca, interactive_brokers, simulated
+
+  # Execution algorithm
+  algorithm: vwap             # Options: market, vwap, twap, pov
+
+  # Slippage assumptions (bps)
+  slippage:
+    equity: 5                 # 5 basis points
+    fixed_income: 2
+    commodities: 10
+    fx: 1
+
+  # Commission structure
+  commission:
+    equity: 0.001             # $0.001 per share
+    fixed_income: 0.0001
+    commodities: 0.005
+    fx: 0.0001
+
+  # Order constraints
+  max_order_size_adv_pct: 10  # Max 10% of average daily volume
+  min_order_value: 100        # Minimum $100 per order
+
+# ============================================================================
+# BACKTESTING
+# ============================================================================
+backtest:
+  start_date: "2020-01-01"
+  end_date: "2024-12-31"
+  initial_capital: 1_000_000
+
+  # Transaction cost model
+  use_realistic_costs: true
+  include_slippage: true
+  include_market_impact: true
+
+  # Rebalancing
+  rebalance_frequency: daily  # Options: daily, weekly, monthly
+
+  # Output
+  save_trades: true
+  save_positions: true
+  save_metrics: true
+  generate_report: true
+
+# ============================================================================
+# MONITORING
+# ============================================================================
+monitoring:
+  # Real-time metrics update frequency (seconds)
+  update_frequency: 1
+
+  # Alert thresholds
+  alerts:
+    var_breach_pct: 90        # Alert at 90% of VaR limit
+    position_limit_pct: 85    # Alert at 85% of position limit
+    drawdown_warning_pct: 15  # Alert at 15% drawdown
+
+  # Dashboard
+  dashboard:
+    enabled: true
+    port: 8050
+    refresh_rate: 5           # Seconds
+
+  # Logging
+  logging:
+    level: INFO               # DEBUG, INFO, WARNING, ERROR
+    file: logs/platform.log
+    max_size_mb: 100
+    backup_count: 10
+
+# ============================================================================
+# DATABASE
+# ============================================================================
+database:
+  # PostgreSQL (reference data)
+  postgresql:
+    host: localhost
+    port: 5432
+    database: quant_platform
+    # Set credentials via environment variables:
+    # POSTGRES_USER=your_user
+    # POSTGRES_PASSWORD=your_password
+
+  # Redis (caching)
+  redis:
+    host: localhost
+    port: 6379
+    db: 0
+
+  # TimescaleDB (time-series data)
+  timescaledb:
+    host: localhost
+    port: 5432
+    database: market_data
+
+# ============================================================================
+# PERFORMANCE
+# ============================================================================
+performance:
+  # Parallelization
+  max_workers: 8              # Number of parallel workers
+  use_multiprocessing: true
+
+  # Caching
+  cache_size_mb: 1024         # 1GB cache
+  cache_ttl_seconds: 3600     # 1 hour TTL
+
+  # Optimization
+  use_jit_compilation: true   # Numba JIT
+  vectorize_operations: true
+
+# ============================================================================
+# ENVIRONMENT
+# ============================================================================
+environment: development       # Options: development, backtest, paper, staging, production
+
+# Production-specific settings
+production:
+  enable_trading: false       # Safety switch
+  require_approval: true      # Require manual approval for trades
+  max_daily_trades: 100       # Maximum trades per day
+  emergency_contact: your-email@example.com

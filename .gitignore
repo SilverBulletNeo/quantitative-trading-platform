@@ -1,0 +1,152 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environment
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*.ipynb_checkpoints/
+
+# PyCharm
+.idea/
+
+# VS Code
+.vscode/
+
+# Environment Variables
+.env
+.env.local
+.env.production
+*.secret
+
+# API Keys and Credentials
+config/credentials.yaml
+config/api_keys.yaml
+*_secret.yaml
+*_credentials.json
+
+# Data Files
+data/raw/*.csv
+data/raw/*.parquet
+data/raw/*.h5
+data/processed/*.csv
+data/processed/*.parquet
+data/alternative/**/*
+!data/*/.gitkeep
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Logs
+logs/
+*.log
+
+# Backtest Results
+backtest/results/*.json
+backtest/results/*.csv
+backtest/results/*.html
+backtest/reports/*.pdf
+backtest/reports/*.html
+
+# Temporary Files
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker
+docker-compose.override.yml
+
+# Terraform
+*.tfstate
+*.tfstate.*
+.terraform/
+.terraform.lock.hcl
+
+# Coverage
+.coverage
+htmlcov/
+coverage.xml
+*.cover
+
+# MyPy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pytest
+.pytest_cache/
+
+# Research Experiments
+research/experiments/*/results/
+research/experiments/*/checkpoints/
+
+# Large Files
+*.h5
+*.hdf5
+*.parquet
+*.feather
+
+# Backup Files
+*.bak
+*.backup
+*_backup.*
+
+# Compiled C Extensions
+*.o
+*.so
+*.dylib
+*.dll
+
+# Documentation Build
+docs/_build/
+docs/_static/
+docs/_templates/
+
+# Profiling
+*.prof
+*.lprof
+
+# Model Files
+models/*.pkl
+models/*.joblib
+models/*.h5
+models/*.pt
+models/*.pth
+
+# Ignore everything in scratch/
+scratch/
+temp/
