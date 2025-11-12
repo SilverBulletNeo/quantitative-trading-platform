@@ -37,6 +37,7 @@ class AssetClass(Enum):
     FIXED_INCOME = "fixed_income"
     COMMODITIES = "commodities"
     FX = "fx"
+    CRYPTO = "crypto"  # Added cryptocurrency as alternative asset class
 
 
 class Region(Enum):
