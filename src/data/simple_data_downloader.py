@@ -17,7 +17,7 @@ EQUITIES = ['AAPL', 'MSFT', 'GOOGL', 'AMZN', 'META', 'NVDA', 'TSLA', 'JPM', 'BAC
 BONDS = ['TLT', 'IEF', 'SHY']
 COMMODITIES = ['GLD', 'SLV', 'DBC']
 
-def download_single_symbol(symbol, start_date='2020-01-01', end_date=None):
+def download_single_symbol(symbol, start_date='2010-01-01', end_date=None):
     """Download data for a single symbol"""
     if end_date is None:
         end_date = datetime.today().strftime('%Y-%m-%d')
