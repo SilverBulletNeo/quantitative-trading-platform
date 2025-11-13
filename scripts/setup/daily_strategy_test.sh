@@ -36,7 +36,7 @@ echo "Daily Crypto Strategy Test"
 echo "Started: $(date)"
 echo "================================================================"
 
-python "$PROJECT_ROOT/src/strategies/crypto_strategy_tester.py" 2>&1 | tee "$LOG_FILE"
+python "$PROJECT_ROOT/src/strategies/comprehensive_strategy_tester.py" --asset-class multi 2>&1 | tee "$LOG_FILE"
 
 EXIT_CODE=${PIPESTATUS[0]}
 
