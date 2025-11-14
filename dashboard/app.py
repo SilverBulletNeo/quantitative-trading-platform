@@ -233,6 +233,7 @@ navbar = dbc.Navbar(
                     dbc.NavLink("⚠️ Risk", href="/risk", active="exact", className="nav-link"),
                     dbc.NavLink("📈 Attribution", href="/attribution", active="exact", className="nav-link"),
                     dbc.NavLink("📉 Analytics", href="/analytics", active="exact", className="nav-link"),
+                    dbc.NavLink("🔬 Optimization", href="/optimization", active="exact", className="nav-link"),
                 ],
                 className="ms-auto",
                 navbar=True,
@@ -267,6 +268,9 @@ def display_page(pathname):
     elif pathname == '/analytics':
         from pages import analytics_page
         return analytics_page.layout
+    elif pathname == '/optimization':
+        from pages import optimization_page
+        return optimization_page.layout
     else:  # Default to performance page
         from pages import performance_page
         return performance_page.layout
