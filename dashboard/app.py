@@ -272,6 +272,40 @@ def display_page(pathname):
         return performance_page.layout
 
 
+# PDF Export callback
+@app.callback(
+    Output('pdf-export-status', 'children'),
+    Input('generate-pdf-btn', 'n_clicks'),
+    prevent_initial_call=True
+)
+def generate_pdf_report(n_clicks):
+    """Generate PDF report when button clicked"""
+    if n_clicks is None:
+        return ""
+
+    try:
+        from datetime import datetime
+        from pdf_report import PDFReportGenerator
+
+        generator = PDFReportGenerator()
+        timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+        output_path = f'reports/monthly_report_{timestamp}.pdf'
+
+        path = generator.generate_monthly_report('equity_momentum_90d', output_path)
+
+        return dbc.Alert(
+            f"✅ PDF Report Generated: {path}",
+            color="success",
+            duration=5000
+        )
+    except Exception as e:
+        return dbc.Alert(
+            f"❌ Error generating PDF: {str(e)}",
+            color="danger",
+            duration=5000
+        )
+
+
 if __name__ == '__main__':
     print("="*80)
     print("🚀 Starting Quantitative Trading Dashboard")

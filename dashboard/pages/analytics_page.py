@@ -591,7 +591,8 @@ layout = dbc.Container([
                             html.Li("Top/bottom positions"),
                             html.Li("Regime history"),
                         ], style={'fontSize': '0.85rem', 'paddingLeft': '20px'}),
-                        dbc.Button("Generate PDF Report", color="success", className="w-100 mt-3"),
+                        dbc.Button("Generate PDF Report", id="generate-pdf-btn", color="success", className="w-100 mt-3"),
+                        html.Div(id="pdf-export-status", className="mt-2"),
                     ])
                 ])
             ]),
