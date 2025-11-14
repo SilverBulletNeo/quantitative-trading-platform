@@ -1,0 +1,35 @@
+{
+  "email": {
+    "enabled": false,
+    "smtp_server": "smtp.gmail.com",
+    "smtp_port": 587,
+    "sender_email": "your-email@gmail.com",
+    "sender_password": "your-app-password",
+    "recipient_emails": [
+      "recipient1@example.com",
+      "recipient2@example.com"
+    ]
+  },
+  "slack": {
+    "enabled": false,
+    "webhook_url": "https://hooks.slack.com/services/YOUR/WEBHOOK/URL",
+    "channel": "#trading-alerts",
+    "username": "Trading Alert Bot"
+  },
+  "alert_rules": {
+    "critical_only": false,
+    "throttle_minutes": 15,
+    "business_hours_only": false
+  },
+  "severity_colors": {
+    "CRITICAL": "#ff4444",
+    "WARNING": "#ffaa00",
+    "INFO": "#00d4ff"
+  },
+  "_instructions": {
+    "email_setup": "For Gmail: Enable 2FA and create an App Password at https://myaccount.google.com/apppasswords",
+    "slack_setup": "Create a webhook at https://api.slack.com/messaging/webhooks",
+    "throttle_minutes": "Minimum time between duplicate alerts (prevents spam)",
+    "business_hours_only": "Set to true to only send alerts during market hours (9 AM - 5 PM ET, weekdays)"
+  }
+}
