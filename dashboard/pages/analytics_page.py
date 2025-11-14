@@ -365,7 +365,7 @@ def create_trade_history_table():
         bordered=True,
         hover=True,
         responsive=True,
-        dark=True,
+        color="dark",
         size="sm"
     )
 

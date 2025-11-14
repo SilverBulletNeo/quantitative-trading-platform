@@ -344,7 +344,7 @@ layout = dbc.Container([
                                 ]),
                                 # Add more sample rows...
                             ])
-                        ], bordered=True, hover=True, responsive=True, dark=True)
+                        ], bordered=True, hover=True, responsive=True, color="dark")
                     ])
                 ])
             ])

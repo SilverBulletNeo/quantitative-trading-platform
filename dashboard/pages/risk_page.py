@@ -580,7 +580,7 @@ layout = dbc.Container([
                                 html.Td("Data refresh completed", style={'fontSize': '0.85rem'}),
                             ]),
                         ])
-                    ], bordered=True, hover=True, responsive=True, dark=True, size="sm")
+                    ], bordered=True, hover=True, responsive=True, color="dark", size="sm")
                 ])
             ])
         ], md=6),

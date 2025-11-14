@@ -230,7 +230,6 @@ def create_monthly_attribution_heatmap():
         textfont={"size": 10},
         colorbar=dict(
             title="Regime<br>Contribution (%)",
-            titleside="right",
             tickmode="linear",
             tick0=-3,
             dtick=1
@@ -567,14 +566,14 @@ layout = dbc.Container([
                                 html.Td("12.5%"),
                                 html.Td(dbc.Badge("MINOR", color="secondary")),
                             ]),
-                            html.Tr(style={'borderTop': '2px solid #00d4ff'},[
+                            html.Tr([
                                 html.Td(html.Strong("Total Strategy Return")),
                                 html.Td(html.Strong("+18.7%"), style={'color': '#00d4ff', 'fontSize': '1.1rem'}),
                                 html.Td(html.Strong("100%")),
                                 html.Td(dbc.Badge("TARGET", color="info")),
-                            ]),
+                            ], style={'borderTop': '2px solid #00d4ff'}),
                         ])
-                    ], bordered=True, hover=True, responsive=True, dark=True)
+                    ], bordered=True, hover=True, responsive=True, color="dark")
                 ])
             ])
         ])
